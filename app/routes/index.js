@@ -1,22 +1,26 @@
 'use strict';
 
 var path = process.cwd();
-// var ImgHandler = require(path + '/app/controllers/imgHandler.js');
+var multer = require('multer');
+var fs = require('fs');
+
+var upload = multer({ 
+	dest: path + '/public/uploads/',
+	limits: {fileSize: 1000000, files:1},
+});
 
 module.exports = function (app, db) {
-	
- 	// var imgHandler = new ImgHandler(db);
-	
+
+
+	app.route('/upload/')
+		.post(upload.single('file'), function(req, res) {
+			res.send({fileSize: req.file.size});
+		});
+
 	app.route('/')
-		.get(function(req,res) {
+		.get(function(req, res) {
 			res.sendFile(path + '/public/index.html');
 		});
-/*		
-	app.route('/api/imagesearch/:search')
-		.get(imgHandler.getImages);
-		
-	app.route('/api/latest/imagesearch')
-		.get(imgHandler.getSearches);
-*/
+	
 };
 

@@ -2,10 +2,10 @@
 
 (function() {
     var uploadButton = document.querySelector('#btn-upload');
-    var apiUrl = 'https://file-metadata-microservice-alcatrats.c9users.io/upload'
+    var apiUrl = 'https://file-metadata-microservice-alcatrats.c9users.io/'
     
     function showSize(data) {
-        alert('FILE SIZE: ' + data.size);
+        alert('FILE SIZE: ' + data.fileSize);
     }
     
     function ajaxRequest(method, url, callback) {

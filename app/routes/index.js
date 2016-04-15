@@ -12,9 +12,9 @@ var upload = multer({
 module.exports = function (app, db) {
 
 
-	app.route('/upload/')
+	app.route('/upload')
 		.post(upload.single('file'), function(req, res) {
-			res.send({fileSize: req.file.size});
+			res.json({fileSize: req.file.size});
 		});
 
 	app.route('/')

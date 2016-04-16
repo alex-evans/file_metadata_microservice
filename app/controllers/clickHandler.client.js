@@ -15,6 +15,7 @@
         };
         
         fd.append('file', document.getElementById('file').files[0]);
+        
         xmlhttp.open(method, url, true);
         xmlhttp.send(fd);
     }
@@ -25,7 +26,7 @@
         event.preventDefault();
         
         ajaxRequest('POST', window.location + 'file-size', function(data) {
-            alert('FILE SIZE: ' + data.filesize);
+            alert('FILE SIZE: ' + data);
         });
     }, false);
     

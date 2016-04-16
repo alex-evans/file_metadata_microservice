@@ -1,29 +1,30 @@
 'use strict';
 
 (function() {
-    var uploadButton = document.querySelector('#btn-upload');
-    var apiUrl = 'https://file-metadata-microservice-alcatrats.c9users.io/'
-    
-    function showSize(data) {
-        alert('FILE SIZE: ' + data.fileSize);
-    }
-    
+    var uploadButton = document.querySelector('#upload-form');
+
     function ajaxRequest(method, url, callback) {
         var xmlhttp = new XMLHttpRequest();
         
+        var fd = new FormData();
+              
         xmlhttp.onreadystatechange = function() {
             if(xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                 callback(xmlhttp.response);
             }
         };
         
+        fd.append('file', document.getElementById('file').files[0]);
         xmlhttp.open(method, url, true);
-        xmlhttp.send();
+        xmlhttp.send(fd);
     }
     
-    uploadButton.addEventListener('click', function() {
-        ajaxRequest('POST', apiUrl, function() {
-            ajaxRequest('GET', apiUrl, showSize);
+    uploadButton.addEventListener('submit', function(event) {
+        event.stopPropagation();
+        event.preventDefault();
+        
+        ajaxRequest('POST', window.location, function(data) {
+            alert('FILE SIZE: ' + data.fileSize);
         });
     }, false);
     

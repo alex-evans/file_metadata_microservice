@@ -20,12 +20,14 @@
     }
     
     uploadButton.addEventListener('submit', function(event) {
+
         event.stopPropagation();
         event.preventDefault();
         
-        ajaxRequest('POST', window.location, function(data) {
-            alert('FILE SIZE: ' + data.fileSize);
+        ajaxRequest('POST', window.location + 'file-size', function(data) {
+            alert('FILE SIZE: ' + data.filesize);
         });
     }, false);
     
-})
+}());
+

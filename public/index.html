@@ -13,10 +13,10 @@
             <p>This is a very simple app which posts the chosen file and states how big it is.</p>
         </div>
         <div>
-            <form action="/upload" method="POST" enctype="multipart/form-data" id="upload-form">
+            <form action="/file-size" method="post" enctype="multipart/form-data" id="upload-form">
                 Select a file to upload:
                 <input type="file" name="file" id="file">
-                <input type="submit" value="Upload File" id="btn-upload">
+                <input type="submit" value="Upload File" name="submit">
             </form>
         </div>
         
